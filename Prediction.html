@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="en" >
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>AT TIDE - Application</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="assets/css/wavy.css?v=1.2.0" rel="stylesheet" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400px,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+<style>  
+ .sidepanel-item{list-style: none;
+                padding-left: 16px;
+}
+    .dropdown-menu.dropdown-menu-right.sideleft-panelA.animated.slideInLeft {
+    margin-right: -50px !important;
+    margin-top: -1rem !important;
+}
+    .sideleft-panelA{
+    height: 100vh;
+    min-width: 289px;
+    top: 68px;
+        box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.37);
+    border: 0;
+background: #020c45;
+}
+ul.sidepanel-item li a{color: #fff; text-decoration: none; font-size: 1.5rem;}
+ul.sidepanel-item li a:hover{    background-color: #020c45 !important;
+    color: #FFFFFF;}
+ul.sidepanel-item li{padding: 10px 0px;}
+ul.sidepanel-item li a span{padding-right: 20px;}
+ul.sidepanel-item li a:hover, ul.sidepanel-item li a:active{font-weight: 500;}
+.page-wrapper{margin-top: 75px;}  
+.vertical-menu{
+    list-style: none;
+    padding: 1rem 0rem;
+    margin-right: 2rem;
+    }
+.vertical-menu li{
+        padding: 0.6rem 1.2rem;
+    background: #b1d5f0;
+    color: black;
+    margin: 1rem 0rem;
+    /* max-width: 50%; */
+    border-radius: 30px;
+    text-align: center;
+    font-size: 1.2rem;
+    display: inline-block;
+    }
+.vertical-menu li.active, .vertical-menu li:Hover{
+        background: #0e52b9;
+    color: white;  
+    }
+    .left-main-panel {
+    position: fixed;
+    height: 29%;
+    width: 250px;
+    background: #00000042;
+    padding: 10px 10px 10px 25px;
+    right: 0px;
+    /* overflow-y: scroll; */
+    z-index: 3;
+    top: 0;
+}
+</style>
+<style>
+    .tw-txt{color: white !important;}
+    .mb-1{margin-bottom: 1rem;}
+    .btn-toggle {
+  margin: 0 4rem;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 1.5rem;
+  width: 3rem;
+  border-radius: 1.5rem;
+  color: #6b7381;
+  background: #bdc1c8;
+}
+.btn-toggle:focus,
+.btn-toggle.focus,
+.btn-toggle:focus.active,
+.btn-toggle.focus.active {
+  outline: none;
+}
+.btn-toggle:before,
+.btn-toggle:after {
+  line-height: 1.5rem;
+  width: 4rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle:before {
+  content: 'Off';
+  left: -4rem;
+}
+.btn-toggle:after {
+  content: 'On';
+  right: -4rem;
+  opacity: 0.5;
+}
+.btn-toggle > .handle {
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 1.125rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.active > .handle {
+  left: 1.6875rem;
+  transition: left 0.25s;
+}
+.btn-toggle.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-sm:before,
+.btn-toggle.btn-sm:after {
+  line-height: -0.5rem;
+  color: #fff;
+  letter-spacing: 0.75px;
+  left: 0.4125rem;
+  width: 2.325rem;
+}
+.btn-toggle.btn-sm:before {
+  text-align: right;
+}
+.btn-toggle.btn-sm:after {
+  text-align: left;
+  opacity: 0;
+}
+.btn-toggle.btn-sm.active:before {
+  opacity: 0;
+}
+.btn-toggle.btn-sm.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-xs:before,
+.btn-toggle.btn-xs:after {
+  display: none;
+}
+.btn-toggle:before,
+.btn-toggle:after {
+  color: #6b7381;
+}
+.btn-toggle.active {
+  background-color: #0289d8;
+}
+.btn-toggle.btn-lg {
+  margin: 0 5rem;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 2.5rem;
+  width: 5rem;
+  border-radius: 2.5rem;
+}
+.btn-toggle.btn-lg:focus,
+.btn-toggle.btn-lg.focus,
+.btn-toggle.btn-lg:focus.active,
+.btn-toggle.btn-lg.focus.active {
+  outline: none;
+}
+.btn-toggle.btn-lg:before,
+.btn-toggle.btn-lg:after {
+  line-height: 2.5rem;
+  width: 5rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle.btn-lg:before {
+  content: 'Off';
+  left: -5rem;
+}
+.btn-toggle.btn-lg:after {
+  content: 'On';
+  right: -5rem;
+  opacity: 0.5;
+}
+.btn-toggle.btn-lg > .handle {
+  position: absolute;
+  top: 0.3125rem;
+  left: 0.3125rem;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 1.875rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-lg.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.btn-lg.active > .handle {
+  left: 2.8125rem;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-lg.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.btn-lg.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-lg.btn-sm:before,
+.btn-toggle.btn-lg.btn-sm:after {
+  line-height: 0.5rem;
+  color: #fff;
+  letter-spacing: 0.75px;
+  left: 0.6875rem;
+  width: 3.875rem;
+}
+.btn-toggle.btn-lg.btn-sm:before {
+  text-align: right;
+}
+.btn-toggle.btn-lg.btn-sm:after {
+  text-align: left;
+  opacity: 0;
+}
+.btn-toggle.btn-lg.btn-sm.active:before {
+  opacity: 0;
+}
+.btn-toggle.btn-lg.btn-sm.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-lg.btn-xs:before,
+.btn-toggle.btn-lg.btn-xs:after {
+  display: none;
+}
+.btn-toggle.btn-sm {
+  margin: 0 0.5rem;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 1.5rem;
+  width: 3rem;
+  border-radius: 1.5rem;
+}
+.btn-toggle.btn-sm:focus,
+.btn-toggle.btn-sm.focus,
+.btn-toggle.btn-sm:focus.active,
+.btn-toggle.btn-sm.focus.active {
+  outline: none;
+}
+.btn-toggle.btn-sm:before,
+.btn-toggle.btn-sm:after {
+  line-height: 1.5rem;
+  width: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle.btn-sm:before {
+  content: 'Off';
+  left: -0.5rem;
+}
+.btn-toggle.btn-sm:after {
+  content: 'On';
+  right: -0.5rem;
+  opacity: 0.5;
+}
+.btn-toggle.btn-sm > .handle {
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 1.125rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-sm.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.btn-sm.active > .handle {
+  left: 1.6875rem;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-sm.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.btn-sm.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-sm.btn-sm:before,
+.btn-toggle.btn-sm.btn-sm:after {
+  line-height: -0.5rem;
+  color: #fff;
+  letter-spacing: 0.75px;
+  left: 0.4125rem;
+  width: 2.325rem;
+}
+.btn-toggle.btn-sm.btn-sm:before {
+  text-align: right;
+}
+.btn-toggle.btn-sm.btn-sm:after {
+  text-align: left;
+  opacity: 0;
+}
+.btn-toggle.btn-sm.btn-sm.active:before {
+  opacity: 0;
+}
+.btn-toggle.btn-sm.btn-sm.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-sm.btn-xs:before,
+.btn-toggle.btn-sm.btn-xs:after {
+  display: none;
+}
+.btn-toggle.btn-xs {
+  margin: 0 0;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 1rem;
+  width: 2rem;
+  border-radius: 1rem;
+}
+.btn-toggle.btn-xs:focus,
+.btn-toggle.btn-xs.focus,
+.btn-toggle.btn-xs:focus.active,
+.btn-toggle.btn-xs.focus.active {
+  outline: none;
+}
+.btn-toggle.btn-xs:before,
+.btn-toggle.btn-xs:after {
+  line-height: 1rem;
+  width: 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle.btn-xs:before {
+  content: 'Off';
+  left: 0;
+}
+.btn-toggle.btn-xs:after {
+  content: 'On';
+  right: 0;
+  opacity: 0.5;
+}
+.btn-toggle.btn-xs > .handle {
+  position: absolute;
+  top: 0.125rem;
+  left: 0.125rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-xs.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.btn-xs.active > .handle {
+  left: 1.125rem;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-xs.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.btn-xs.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-xs.btn-sm:before,
+.btn-toggle.btn-xs.btn-sm:after {
+  line-height: -1rem;
+  color: #fff;
+  letter-spacing: 0.75px;
+  left: 0.275rem;
+  width: 1.55rem;
+}
+.btn-toggle.btn-xs.btn-sm:before {
+  text-align: right;
+}
+.btn-toggle.btn-xs.btn-sm:after {
+  text-align: left;
+  opacity: 0;
+}
+.btn-toggle.btn-xs.btn-sm.active:before {
+  opacity: 0;
+}
+.btn-toggle.btn-xs.btn-sm.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-xs.btn-xs:before,
+.btn-toggle.btn-xs.btn-xs:after {
+  display: none;
+}
+.btn-toggle.btn-secondary {
+  color: #6b7381;
+  background: #bdc1c8;
+}
+.btn-toggle.btn-secondary:before,
+.btn-toggle.btn-secondary:after {
+  color: #6b7381;
+}
+.btn-toggle.btn-secondary.active {
+  background-color: #ff8300;
+}
+
+</style>
+<style>
+    .load-bg {
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        z-index: 8888;
+        background: rgb(0 0 0 / 65%);
+    }
+    .spinner-square {
+    display: flex;
+    flex-direction: row;
+    width: 90px;
+    height: 120px;
+    position: absolute;
+    top: 40%;
+    left: 46%;
+}
+
+.spinner-square > .square {
+    width: 17px;
+    height: 80px;
+    margin: auto auto;
+    border-radius: 4px;
+}
+
+.square-1 {
+    animation: square-anim 1200ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s infinite;
+}
+
+.square-2 {
+    animation: square-anim 1200ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 200ms infinite;
+}
+
+.square-3 {
+    animation: square-anim 1200ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms infinite;
+}
+
+@keyframes square-anim {
+    0% {
+        height: 80px;
+        background-color: rgb(111, 163, 240);
+    }
+    20% {
+        height: 80px;
+    }
+    40% {
+        height: 120px;
+        background-color: rgb(111, 200, 240);
+    }
+    80% {
+        height: 80px;
+    }
+    100% {
+        height: 80px;
+        background-color: rgb(111, 163, 240);
+    }
+}
+    .map-tool1 {
+    position: absolute;
+    z-index: 99999;
+    left: 2rem;
+    bottom: 2rem;
+}
+    .card {
+    box-shadow: 0 4px 10px rgba(0,0,0,.03)!important;
+    background: var(--foreground);
+    border-radius: 6px;
+    border: initial;
+}
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: 0.25rem;
+}
+    .card .card-body, .card .card-footer, .card .card-header {
+    padding: 2rem;
+}
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+}
+    .small-title {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    margin-bottom: 0;
+    font-size: 1em;
+    color: #029fe6;
+    height: 2rem;
+}
+    @media (min-width: 768px) {
+        .justify-content-md-end {
+            -webkit-box-pack: end !important;
+            -ms-flex-pack: end !important;
+            justify-content: flex-end !important;
+        }
+    }
+.align-items-center {
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+.d-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+.col-12 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 100%;
+}
+</style>
+    <style>
+        .search-dashboard {
+    margin-top: 5px;
+    margin-right: 20px;
+}
+        .responsive-search {
+    display: none;
+}
+        .search-dashboard > form {
+    float: left;
+    height: 44px;
+    position: relative;
+    width: 270px;
+}
+        .search-dashboard > form > input {
+    background: rgba(0,0,0,.3);
+    border: 1px solid rgba(81, 83, 101, 0.28);
+}
+.search-dashboard > form > input {
+    background: rgba(255, 255, 255, 0.1);
+    border: medium none;
+    color: #e7e7e7;
+    float: left;
+    width: 100%;
+    font-size: 12px;
+    padding: 10px 30px 10px 15px;
+    border-radius: 5px;
+}
+        .search-dashboard > form > button {
+    background: rgba(0, 0, 0, 0);
+    border: medium none;
+    color: #fff;
+    padding: 12px 15px;
+    position: absolute;
+    right: 0;
+    top: -2px;
+}
+        .responsive-search > i {
+    background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    float: left;
+    font-size: 11px;
+    height: 27px;
+    line-height: 27px;
+    margin-top: 9px;
+    text-align: center;
+    width: 30px;
+}
+        .notification.drop-list {
+    float: none;
+    width: 260px;
+}
+.drop-list.active {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    z-index: 9;
+}
+.drop-list {
+    color: white;
+    /* background: #191e3a; */
+    border: 1px solid #1a2332;
+    /* box-shadow: 0 1px 10px 0px #000000; */
+    padding: 0px 1rem;
+}
+ .drop-list ul {
+    list-style: none;
+    padding: 0px !important;
+}
+   .drop-list > ul > li {
+    border-bottom: 1px solid #e0e0e024;
+    float: left;
+    /* min-height: 71px; */
+    padding: 15px;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    width: 100%;
+}
+
+
+</style>
+<style>
+  .modal-right {
+    padding-right: 0!important
+}
+
+.modal-right .modal-dialog {
+    margin: 0 auto;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 100%;
+    max-width: 550px;
+    margin-top:60px;
+}
+
+.modal-right .modal-body {
+    height: 80vh!important;
+    overflow-y:scroll !important;
+}
+
+.modal-right .modal-content {
+    min-height: 100%;
+    border: initial;
+    border-radius: initial;
+    border-top-left-radius: var(--border-radius-lg);
+    border-bottom-left-radius: var(--border-radius-lg);
+    background: #d5e7f0;
+}
+.modal-right .modal-footer {
+    justify-content: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-bottom-left-radius: var(--border-radius-lg);
+}
+.card.h-100.hcl-br.active {
+    background: none !important;
+    border: none !important;
+    margin-top: 0px;
+}
+
+.modal-footer {
+    border-bottom-left-radius: var(--border-radius-lg);
+    border-bottom-right-radius: var(--border-radius-lg);
+    border-color: var(--separator);
+}
+.modal-body, .modal-footer, .modal-header {
+    padding: var(--card-spacing);
+}
+.modal-footer {
+  border-top: 1px solid #f2eded;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: .75rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: calc(.3rem - 1px);
+    border-bottom-left-radius: calc(.3rem - 1px);
+}
+
+.modal-right .modal-header {
+  flex: 0 0 var(--nav-size-slim);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top-left-radius: var(--border-radius-lg);
+    position: fixed;
+    background: #d5e7f0;
+    padding: 2rem;
+    width: 100%;
+    border-bottom: 1px solid #f2eded;
+}
+
+
+.modal-right .modal-footer {
+  justify-content: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-bottom-left-radius: var(--border-radius-lg);
+    position: fixed;
+    width: 100%;
+    background: #d5e7f0;
+    top: 85vh;
+    padding: 0px 2rem;
+}
+.modal-right {
+    padding-right: 0 !important;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1060;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow:hidden !important;
+    outline: 0;
+}
+.fade {
+    -webkit-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+}
+
+.modal-right.modal.fade .modal-dialog {
+    transform: translate(0,0)
+}
+
+.modal-right.modal.show .modal-dialog {
+    transform: translate(0,0)
+}
+
+.modal-right.large .modal-dialog {
+    max-width: 530px
+}
+svg.mb-2.svg-h3 {
+    height: 75px;
+    fill: #0275b8;
+}
+.txt-lbl{text-align: justify;
+    font-weight: 900;
+    margin-top: 1rem;
+    margin-left: 2rem;}
+</style>
+</head>
+
+<body>
+    <div class="load-bg" style="display: none;">
+    <div class="spinner-square">
+        <div class="square-1 square"></div>
+        <div class="square-2 square"></div>
+        <div class="square-3 square"></div>
+</div></div>
+    <div class="wrapper">
+       <nav class="navbar navbar-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                      
+                        <a class="navbar-brand" href="#"> AT TIDE </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                            <div class="search-dashboard">
+            <div class="responsive-search"> <i class="fa fa-search"></i> </div>
+            <form>
+                <input type="text" placeholder="Search here">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+            <div class="" style="position: absolute;width: 270px;top: 59px;background: #0e122b;z-index: 2;">
+                        <div class=" drop-list"> <span style="
+    font-size: 1rem;
+">suggested station</span>
+                        <ul>
+                            
+                            <li> <span>station name
+</span> </li>
+                            
+                        </ul>
+                         </div>
+                    </div>
+        </div>
+                            </li>
+                            <li>
+                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="material-icons">settings</i>
+                                   
+                                </a>
+                            </li>
+                            <li>
+                                  <a class="navbar-brand f-w-im fs-26" style="color: white;" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bars"></i></a>
+                            <div class="dropdown-menu dropdown-menu-right sideleft-panelA animated slideInLeft">
+                              <ul class="sidepanel-item">
+                      
+
+                               <li>
+                                    <a class="sideli-lst" href="index.html"><span><i class="fa fa-tachometer" aria-hidden="true"></i></span>Dashboard</a>
+                               </li>
+                              <li>
+                                   <a class="sideli-lst" href="Statistics.html"><span><i class="fa fa-area-chart" aria-hidden="true"></i></span>Statistics </a>
+                              </li>
+                                  <li>
+                                   <a class="sideli-lst" href="Reports.html"><span><i class="fa fa-file-text-o" aria-hidden="true"></i></span>Reports </a>
+                              </li>
+                              </ul>  	
+
+                            </div>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav> 
+        
+        <div class="main-panel">
+            <div class="map-tool1">
+<div class="card">
+<div class="card-body">
+<div id="timer"><h2 class="small-title">Station Name</h2>
+                      
+<div class="col-12 d-flex align-items-center justify-content-md-end" style="margin-top: 1rem;">
+<select name="basicValidationSelect2" class="form-control custom-select" required style="min-width: 200px;">
+<option label="Select year"> Select year</option>
+<option value="Breadstick">2021</option>
+<option value="Biscotti">2022</option>
+<option value="Fougasse">2023</option>
+
+</select>
+
+
+</div>
+<div class="col-12 d-flex align-items-center justify-content-md-end" style="margin-top: 1rem;">
+<button type="button" class="btn btn-primary" id="addEditConfirmButton" style=" margin-left: 1rem;">Create Table</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#addEditModal">Open Modal</button>
+</div>            
+</div>
+</div>
+</div>
+</div>
+           <div class="wrapper daylight-map"  style="overflow: hidden;" id="googleMap">
+
+<!--===============================================================================================-->
+    
+<!--============================Container===================================================================-->
+</div>
+            <div class="left-main-panel">
+          <div class="row g-0 h-100 align-content-center mb-1" style="margin-top: 70px;">
+<div class="col-12 col-md-7 d-flex flex-column mb-2 mb-md-0 position-static">
+<a class="tw-txt" href=" ">sample</a>
+
+</div>
+<div class="col-12 col-md-5 d-flex align-items-center justify-content-md-end">
+    <button type="button" class="btn btn-sm btn-toggle active" data-toggle="button" aria-pressed="true" autocomplete="off">
+        <div class="handle"></div>
+      </button>
+</div>
+
+</div>
+            <div class="row g-0 h-100 align-content-center mb-1">
+<div class="col-12 col-md-7 d-flex flex-column mb-2 mb-md-0 position-static">
+<a class="tw-txt" href=" ">sample</a>
+
+</div>
+<div class="col-12 col-md-5 d-flex align-items-center justify-content-md-end">
+    <button type="button" class="btn btn-sm btn-toggle active" data-toggle="button" aria-pressed="true" autocomplete="off">
+        <div class="handle"></div>
+      </button>
+</div>
+
+</div>
+                <div class="row g-0 h-100 align-content-center mb-1">
+<div class="col-12 col-md-7 d-flex flex-column mb-2 mb-md-0 position-static">
+<a class="tw-txt" href=" ">sample</a>
+
+</div>
+<div class="col-12 col-md-5 d-flex align-items-center justify-content-md-end">
+    <button type="button" class="btn btn-sm btn-toggle active" data-toggle="button" aria-pressed="true" autocomplete="off">
+        <div class="handle"></div>
+      </button>
+</div>
+
+</div>
+                <div class="row g-0 h-100 align-content-center mb-1">
+<div class="col-12 col-md-7 d-flex flex-column mb-2 mb-md-0 position-static">
+<a class="tw-txt" href=" ">sample</a>
+
+</div>
+<div class="col-12 col-md-5 d-flex align-items-center justify-content-md-end">
+    <button type="button" class="btn btn-sm btn-toggle active" data-toggle="button" aria-pressed="true" autocomplete="off">
+        <div class="handle"></div>
+      </button>
+</div>
+
+</div>
+                
+                    </div>
+            
+        </div>
+        <div class="modal modal-right fade" id="addEditModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+          <div class="modal-dialog">
+          <div class="modal-content">
+          <div class="modal-body">
+            <div class="hm-slider-cont mt-4m">
+              <h2 class="mb-5">Mirfa</h2>
+              <h3 style="font-size: 1rem;">Last Updated on : 2024-10-17 12:58</h3>
+              <div class="scroll-track-visible">
+                <div class="mb-3 mt-2">
+                  <div class="row g-2 row-cols-4 homepageCard">
+                    <div class="col small-gutter-col cursor-pointer">
+                      <div class="card h-100 hcl-br  active" id="hc111" data-tooltip-id="hc111"><div class="card-body text-center d-flex"><svg class="mb-2 svg-h3 text-primary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6L6.10557 4.44721C6.66863 4.16569 7.33137 4.16569 7.89443 4.44721L9.31672 5.15836C11.0059 6.00294 12.9941 6.00294 14.6833 5.15836L16.1056 4.44721C16.6686 4.16569 17.3314 4.16569 17.8944 4.44721L21 6M3 10.5L6.10557 8.94721C6.66863 8.66569 7.33137 8.66569 7.89443 8.94721L9.31672 9.65836C11.0059 10.5029 12.9941 10.5029 14.6833 9.65836L16.1056 8.94721C16.6686 8.66569 17.3314 8.66569 17.8944 8.94721L21 10.5M3 15L6.10557 13.4472C6.66863 13.1657 7.33137 13.1657 7.89443 13.4472L9.31672 14.1584C11.0059 15.0029 12.9941 15.0029 14.6833 14.1584L16.1056 13.4472C16.6686 13.1657 17.3314 13.1657 17.8944 13.4472L21 15M3 19.5L6.10557 17.9472C6.66863 17.6657 7.33137 17.6657 7.89443 17.9472L9.31672 18.6584C11.0059 19.5029 12.9941 19.5029 14.6833 18.6584L16.1056 17.9472C16.6686 17.6657 17.3314 17.6657 17.8944 17.9472L21 19.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><div class="txt-lbl"><p class="">Tide</p><h6 class="">2.01 M</h6></div></div></div>  
+                    </div></div></div>
+                          <div class="mb-3">
+                            <h2 class="small-title">Statistics</h2><div class="Chart mt-2"><div>
+
+                            </div></div></div></div>
+                      </div>
+          </div>
+          <div class="modal-footer ">
+            <button type="button" class="btn btn-primary" id="addEditConfirmButton">Search</button>
+          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+        
+          </div>
+          </div>
+          </div>
+          </div>
+</body>
+<script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="assets/js/material.min.js" type="text/javascript"></script>
+<script src="assets/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="assets/js/wavy.js?v=1.2.0"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script src="assets/js/jquery.wavify.js"></script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCU7R-dkiAjiX7lexQ6Fc4Nm4tEiBhe-K0&amp;libraries=geometry"></script>
+    <script src="assets/js/map.js"></script> 	
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        media.initMap();
+    
+    });
+</script>
+<script type="text/javascript">
+    $('.open-datetimepicker').click(function (event) {
+        event.preventDefault();
+        $('.datepicker').datepicker({
+    daysOfWeekDisabled: "0"
+});
+    $(".datepicker").datepicker("show");
+   
+
+    });
+    $('.open-datetimepickertwo').click(function (event) {
+        event.preventDefault();
+        $(".datepickertwo").datepicker("show");
+
+    });
+	</script>
+
+</html>
